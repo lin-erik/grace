@@ -19,7 +19,26 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react']
         }
-      }
+      },
+      {
+        test:/\.css$/,
+        include: SRC_DIR,
+        loader: ['style-loader','css-loader']
+      },
     ]
-  }
+  },
+  devServer: {
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:3000'
+      }
+    },
+    historyApiFallback: true
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: `${SRC_DIR}/index.html`,
+      filename: './index.html'
+    })
+  ]
 }

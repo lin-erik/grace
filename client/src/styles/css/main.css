@@ -1,0 +1,12 @@
+body{
+  background-color: #fafafa
+}
+
+/* article,div,footer,header,main,nav,section{
+  display:flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+} */

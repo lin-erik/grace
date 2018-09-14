@@ -1,0 +1,38 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "Client side",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "client-dev": "webpack -d --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "axios": "^0.18.0",
+    "css-loader": "^1.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-text-transition": "^0.1.6",
+    "semantic-ui-react": "^0.82.3",
+    "style-loader": "^0.23.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.16.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7"
+  }
+}
