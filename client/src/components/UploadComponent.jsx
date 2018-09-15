@@ -10,41 +10,40 @@ export default class UploadComponent extends Component {
       imageUrl:""
     }
     this.sendImageUrl = this.sendImageUrl.bind(this);
+    this.sendImageFile = this.sendImageFile.bind(this);
     // this.uploadToTF = this.uploadToTF.bind(this);
   }
-  handleImageUrl(url){
-    this.setState({imageUrl:url})
+  handleImageUrl(imageUrl){
+    this.setState({imageUrl})
   }
 
   sendImageUrl(){
-    axios.post('/api/analyze',{url:this.state.imageUrl}).then(({data})=>{
+    axios.post('/api/analyze',{imageUrl:this.state.imageUrl}).then(({data})=>{
       console.log(data)
     })
   }
+  encodeImage(file) {
+    var reader = new FileReader();
+    reader.onloadend = (e) => {
+        this.getRecommendations(e.target.result)
+    }
+    reader.readAsDataURL(file);
+  }
 
-  // uploadToTF(e){
-  //   e.preventDefault();
-  //   let input = document.getElementById("embedpollfileinput");
-  //   let imageFile = input.files[0];
-  //   let data = new FormData()
-  //   data.append('image', imageFile);
-  //   data.set('username', this.props.username)
-  //   let endpoint = `/send`;
+  sendImageFile(e){
+    e.preventDefault();
+    let input = document.getElementById("embedpollfileinput");
+    let imageFile = input.files[0];
+    let data = new FormData()
+    data.append('image', imageFile);
+    // data.set('username', this.props.username)
 
-  //   axios.post(endpoint, data)
-  //     .then(({data})=>{
-  //       this.props.handleStateChange('inventory',data)
-  //   })
-  //   .catch(err=>console.log(err))
-  // }
-
-  // sendImageUrl(){
-  //   let endpoint = '/send'
-  //   axios.post(endpoint, {imageUrl: this.props.imageUrl, username: this.props.username})
-  //     .then(({data}) => {
-  //       this.props.handleStateChange('inventory', data);
-  //     })
-  // }
+    axios.post('/api/analyze', data)
+      .then(({data})=>{
+        console.log(data)
+    })
+    .catch(err=>console.log(err))
+  }
 
   render() {
     return (
@@ -58,7 +57,7 @@ export default class UploadComponent extends Component {
                     htmlFor="embedpollfileinput"
                     className="ui large blue right floated button">
                     <input type="file"
-                      onChange={this.uploadToTF}
+                      onChange={this.sendImageFile}
                       className="inputfile" id="embedpollfileinput"
                       style={{ width: "0.1px",   height: "0.1px",  opacity: "0", overflow: "hidden",  position: "absolute",    zIndex: "-1"
                       }}/>

@@ -9,6 +9,7 @@ const controller = require('./controllers/controller')
 const scraper = require('./services/scraper.js')
 const db = require('./database/mongoose')
 const model = require('./models/inventory')
+const fileUpload = require('express-fileupload');
 
 const app = express()
 /****** express middleware ******/
@@ -16,6 +17,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
+app.use(fileUpload());
 /******* end of middleware ******/
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -25,20 +27,27 @@ const clarifai = new Clarifai.App({
   apiKey: CLARIFAI_API
 })
 
-app.get('/scrape', scraper.scrape.bind(this,'bloomingdales',clarifai))
+// app.get('/scrape', scraper.scrape.bind(this,'zara',clarifai))
 
-app.get('/label',(req,res)=>{
-  model.labelAll(clarifai,()=>{
-    res.send("done")
-  })
-})
+// app.get('/label',(req,res)=>{
+//   model.labelAll(clarifai,()=>{
+//     res.send("done")
+//   })
+// })
 
 app.post('/api/analyze',(req,res)=>{
-  clarifai.models.predict(CLARIFAI_MODEL_ID, req.body.url).then((response,err)=>{
-    if(err) return res.send(err)
-    let concepts = response.outputs[0].data.concepts.map(concept=>concept.name)
-    res.send(concepts)
-  })
+  let image
+  if(req.files && req.files.image) image = Buffer.from(req.files.image.data).toString('base64')
+  if(req.body.imageUrl) image = req.body.imageUrl
+
+  clarifai.models.predict(CLARIFAI_MODEL_ID, image).then(
+    function(response) {
+      let concepts = response.outputs[0].data.concepts.map(concept=>concept.name)
+      res.send(concepts)
+    },
+    function(err) {
+      res.send(err)
+    })
 })
 
 // app.get('/clarifai/inputs',(req,res)=>{
