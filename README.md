@@ -1,6 +1,6 @@
 # Grace
 
-Grace is an AI fashion assistant, providing smart recommendations based on user-submitted images - leveraging object detection to classify/detect clothing.
+Grace is a smart fashion assistant, providing recommendations based on user-submitted images - leveraging object detection to classify/detect clothing.
 
 ## Team
 - Dan Guan
