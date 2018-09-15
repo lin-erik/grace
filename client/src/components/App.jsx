@@ -1,38 +1,35 @@
-import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import { Redirect, Switch } from 'react-router'
-import '../styles/css/main.css'
-
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router';
+import AOS from 'aos';
+import Splash from './Splash.jsx';
 import UploadComponent from './UploadComponent.jsx'
 
+import '../styles/css/main.css';
+
+AOS.init({
+  duration: 800
+});
 
 class App extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+
+    this.state = {};
   }
 
   render() {
     return (
       <Router>
         <div>
-          <div>
-            <Switch>
-              <Route path="/" exact render={()=>( 
-                <div>Hello
-                  <UploadComponent/>
-                </div>
-              )}/>
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/" component={Splash} />
+          </Switch>
+        <UploadComponent/>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;

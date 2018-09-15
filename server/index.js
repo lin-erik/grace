@@ -3,8 +3,12 @@ const morgan = require('morgan');
 const cors = require('cors');
 const parser = require('body-parser');
 const Clarifai = require('clarifai')
-const { CLARIFAI_API, CUSTOM_MODEL_ID } = require('../config')
+const { CLARIFAI_API, CLARIFAI_MODEL_ID } = require('../config')
 const sampleData = require('../trainingSample')
+const controller = require('./controllers/controller')
+const scraper = require('./services/scraper.js')
+const db = require('./database/mongoose')
+const model = require('./models/inventory')
 
 const app = express()
 /****** express middleware ******/
@@ -21,8 +25,16 @@ const clarifai = new Clarifai.App({
   apiKey: CLARIFAI_API
 })
 
+app.get('/scrape', scraper.scrape.bind(this,'bloomingdales',clarifai))
+
+app.get('/label',(req,res)=>{
+  model.labelAll(clarifai,()=>{
+    res.send("done")
+  })
+})
+
 app.post('/api/analyze',(req,res)=>{
-  clarifai.models.predict('e0be3b9d6a454f0493ac3a30784001ff', req.body.url).then((response,err)=>{
+  clarifai.models.predict(CLARIFAI_MODEL_ID, req.body.url).then((response,err)=>{
     if(err) return res.send(err)
     let concepts = response.outputs[0].data.concepts.map(concept=>concept.name)
     res.send(concepts)
@@ -74,4 +86,10 @@ app.post('/api/analyze',(req,res)=>{
 
 
 const port = process.env.PORT || 3000
-app.listen(port, () => console.log('Server connected on', port))
+
+app.get('/inventory', controller.inventory.getInventory)
+app.post('/inventory', controller.inventory.createEntry)
+
+app.listen(port, () => {
+  console.log('Server connected on', port)
+})
