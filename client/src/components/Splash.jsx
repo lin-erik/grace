@@ -33,16 +33,13 @@ class Splash extends Component {
                   <Modal
                     trigger={
                       <Button
-                        style={{
-                          backgroundColor: '#AF6345',
-                          color: '#FFFFFF'
-                        }}
+                        style={{ backgroundColor: '#AF6345', color: '#FFFFFF' }}
                       >
                         Get Started
                       </Button>
                     }
                   >
-                    <Modal.Content>
+                    <Modal.Content style={{ backgroundColor: '#696969' }}>
                       <UploadComponent setImageRecs={this.props.setImageRecs} />
                     </Modal.Content>
                   </Modal>
@@ -89,16 +86,13 @@ class Splash extends Component {
                   <Modal
                     trigger={
                       <Button
-                        style={{
-                          backgroundColor: '#D5B1A4',
-                          color: '#FFFFFF'
-                        }}
+                        style={{ backgroundColor: '#D5B1A4', color: '#FFFFFF' }}
                       >
                         Click to Begin
                       </Button>
                     }
                   >
-                    <Modal.Content>
+                    <Modal.Content style={{ backgroundColor: '#696969' }}>
                       <UploadComponent setImageRecs={this.props.setImageRecs} />
                     </Modal.Content>
                   </Modal>

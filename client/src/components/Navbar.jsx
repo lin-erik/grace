@@ -50,53 +50,47 @@ class Navbar extends Component {
   }
 
   render() {
-    if (this.props.imageRecs && this.props.imageRecs.length > 0) {
-      return <Redirect to={{ pathname: '/results', state: { from: '/' } }} />
-    } else {
-      return (
-        <div
-          style={{ position: 'fixed', width: '100%', top: '0px', zIndex: 1 }}
-        >
-          <Header as="h1">
-            <div
-              style={{
-                backgroundColor: 'white',
-                padding: '1%',
-                opacity: '0.75'
-              }}
-            >
-              <TextTransition
-                delay={0}
-                order={this.state.animateDir}
-                spring={{ stiffness: 350, damping: 25 }}
-                text={this.state.text}
+    return (
+      <div style={{ position: 'fixed', width: '100%', top: '0px', zIndex: 1 }}>
+        <Header as="h1">
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '1%',
+              opacity: '0.75'
+            }}
+          >
+            <TextTransition
+              delay={0}
+              order={this.state.animateDir}
+              spring={{ stiffness: 350, damping: 25 }}
+              text={this.state.text}
+            />
+          </div>
+          <Modal
+            trigger={
+              <Button
+                id="uploadButton"
+                primary
+                style={{ paddingTop: '0.5em' }}
+                onClick={this.toggleShowUpload}
+              >
+                Upload a Photo
+              </Button>
+            }
+            open={this.state.showUpload}
+            onClose={this.toggleShowUpload}
+          >
+            <Modal.Content style={{ backgroundColor: '#696969' }}>
+              <UploadComponent
+                setImageRecs={this.props.setImageRecs}
+                toggleShowUpload={this.toggleShowUpload}
               />
-            </div>
-            <Modal style={{textAlign: 'center', borderRadius: '2px', backgroundColor: 'rgba(0,0,0,.7)'}}
-              trigger={
-                <Button
-                  id="uploadButton"
-                  primary
-                  style={{ paddingTop: '0.5em'}}
-                  onClick={this.toggleShowUpload}
-                >
-                  Upload a Photo
-                </Button>
-              }
-              open={this.state.showUpload}
-            >
-              <Modal.Content style={{backgroundColor:"#696969"}}>
-                
-                <UploadComponent
-                  setImageRecs={this.props.setImageRecs}
-                  toggleShowUpload={this.toggleShowUpload}
-                />
-              </Modal.Content>
-            </Modal>
-          </Header>
-        </div>
-      )
-    }
+            </Modal.Content>
+          </Modal>
+        </Header>
+      </div>
+    )
   }
 }
 
