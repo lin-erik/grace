@@ -8,12 +8,9 @@ const sampleData = require('../trainingSample')
 const controller = require('./controllers/controller')
 const scraper = require('./services/scraper.js')
 const db = require('./database/mongoose')
-<<<<<<< HEAD
 const model = require('./models/inventory')
 const fileUpload = require('express-fileupload');
-=======
 const { Inventory } = require('./models/inventory')
->>>>>>> dev
 
 const app = express()
 /****** express middleware ******/
