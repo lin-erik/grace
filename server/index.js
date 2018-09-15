@@ -64,8 +64,11 @@ app.post('/api/analyze',(req,res)=>{
 
   clarifai.models.predict(CLARIFAI_MODEL_ID, image).then(
     function(response) {
-      let concepts = response.outputs[0].data.concepts.map(concept=>concept.name)
-      res.send(concepts)
+      let labels = [response.outputs[0].data.concepts.map(concept=>concept.name)[0]]
+        model.getInventory(labels,(err,results)=>{
+          if(err) return res.send(err)
+          res.send(results)
+        })
     },
     function(err) {
       res.send(err)
