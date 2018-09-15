@@ -1,14 +1,18 @@
-import React from 'react';
-import { Parallax } from 'react-parallax';
-import AOS from 'aos';
+import React from 'react'
+import { Parallax } from 'react-parallax'
+import AOS from 'aos'
+
+import Navbar from './Navbar.jsx'
 
 AOS.init({
   duration: 800
-});
+})
 
 let Splash = props => {
   return (
     <div className="splash">
+      <Navbar />
+      
       <Parallax
         bgImage={
           'http://images.ctfassets.net/cvlcgjxo5px5/3twRR067LywU8UWQse4Y2E/37f4c7dda59b7094723773ce33136048/HP1_2x.jpg'
@@ -39,7 +43,7 @@ let Splash = props => {
         </div>
       </Parallax>
     </div>
-  );
-};
+  )
+}
 
-export default Splash;
+export default Splash
