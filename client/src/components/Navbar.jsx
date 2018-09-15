@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { Header, Button } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
+import { Header, Button, Modal } from 'semantic-ui-react'
 import TextTransition from 'react-text-transition'
+
+import UploadComponent from './UploadComponent.jsx'
 
 class Navbar extends Component {
   constructor(props) {
@@ -9,11 +12,13 @@ class Navbar extends Component {
     this.state = {
       text: 'Grace',
       prevPos: 0,
-      animateDir: 1
+      animateDir: 1,
+      showUpload: false
     }
 
     this.handleClick = this.handleClick.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
+    this.toggleShowUpload = this.toggleShowUpload.bind(this)
   }
 
   handleClick() {
@@ -32,6 +37,10 @@ class Navbar extends Component {
     }
   }
 
+  toggleShowUpload() {
+    this.setState({ showUpload: !this.state.showUpload })
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
   }
@@ -41,29 +50,52 @@ class Navbar extends Component {
   }
 
   render() {
-    return (
-      <div style={{ position: 'fixed', width: '100%', top: '0px', zIndex: 1 }}>
-        <Header as="h1">
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: '1%',
-              opacity: '0.75'
-            }}
-          >
-            <TextTransition
-              delay={0}
-              order={this.state.animateDir}
-              spring={{ stiffness: 350, damping: 25 }}
-              text={this.state.text}
-            />
-          </div>
-          <Button id="uploadButton" primary style={{ paddingTop: '0.5em' }}>
-            Upload a Photo
-          </Button>
-        </Header>
-      </div>
-    )
+    if (this.props.imageRecs && this.props.imageRecs.length > 0) {
+      return <Redirect to={{ pathname: '/results', state: { from: '/' } }} />
+    } else {
+      return (
+        <div
+          style={{ position: 'fixed', width: '100%', top: '0px', zIndex: 1 }}
+        >
+          <Header as="h1">
+            <div
+              style={{
+                backgroundColor: 'white',
+                padding: '1%',
+                opacity: '0.75'
+              }}
+            >
+              <TextTransition
+                delay={0}
+                order={this.state.animateDir}
+                spring={{ stiffness: 350, damping: 25 }}
+                text={this.state.text}
+              />
+            </div>
+            <Modal
+              trigger={
+                <Button
+                  id="uploadButton"
+                  primary
+                  style={{ paddingTop: '0.5em' }}
+                  onClick={this.toggleShowUpload}
+                >
+                  Upload a Photo
+                </Button>
+              }
+              open={this.state.showUpload}
+            >
+              <Modal.Content>
+                <UploadComponent
+                  setImageRecs={this.props.setImageRecs}
+                  toggleShowUpload={this.toggleShowUpload}
+                />
+              </Modal.Content>
+            </Modal>
+          </Header>
+        </div>
+      )
+    }
   }
 }
 
