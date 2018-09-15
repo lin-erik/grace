@@ -72,12 +72,12 @@ class Navbar extends Component {
                 text={this.state.text}
               />
             </div>
-            <Modal
+            <Modal style={{textAlign: 'center', borderRadius: '2px', backgroundColor: 'rgba(0,0,0,.7)'}}
               trigger={
                 <Button
                   id="uploadButton"
                   primary
-                  style={{ paddingTop: '0.5em' }}
+                  style={{ paddingTop: '0.5em'}}
                   onClick={this.toggleShowUpload}
                 >
                   Upload a Photo
@@ -85,7 +85,8 @@ class Navbar extends Component {
               }
               open={this.state.showUpload}
             >
-              <Modal.Content>
+              <Modal.Content style={{backgroundColor:"#696969"}}>
+                
                 <UploadComponent
                   setImageRecs={this.props.setImageRecs}
                   toggleShowUpload={this.toggleShowUpload}

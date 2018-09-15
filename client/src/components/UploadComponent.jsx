@@ -63,14 +63,13 @@ export default class UploadComponent extends Component {
     return (
       <div>
         <Grid style={{ margin: '10px' }}>
-          <Grid.Row centered columns={2}>
+          <Grid.Row centered columns={1}>
             <Grid.Column>
-              <div>
+              <div style={{display:"flex", justifyContent:"center"}}>
                 <div>
                   <label
                     htmlFor="embedpollfileinput"
-                    className="ui large blue right floated button"
-                  >
+                    className="ui large blue button">
                     <input
                       type="file"
                       onChange={this.sendImageFile}
@@ -83,16 +82,12 @@ export default class UploadComponent extends Component {
                         overflow: 'hidden',
                         position: 'absolute',
                         zIndex: '-1'
-                      }}
-                    />
+                      }}/>
                     <i className="ui upload icon" />
                     Upload image
                   </label>
                 </div>
-              </div>
-            </Grid.Column>
-            <Grid.Column>
-              <div>
+                <div style={{marginLeft:"16px"}}>
                 <Input
                   action={
                     <Button
@@ -106,6 +101,7 @@ export default class UploadComponent extends Component {
                   placeholder="Upload with URL"
                   onChange={e => this.handleImageUrl(e.target.value)}
                 />
+              </div>
               </div>
             </Grid.Column>
           </Grid.Row>
