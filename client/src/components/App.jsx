@@ -27,8 +27,8 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Splash} />
           </Switch>
+          <UploadComponent/>
         </div>
-        <UploadComponent/>
       </Router>
     )
   }
