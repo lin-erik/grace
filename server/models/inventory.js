@@ -13,6 +13,14 @@ let inventorySchema = new Schema({
 
 const Inventory = mongoose.model('Inventory', inventorySchema)
 
+const getInventory = (labels, cb) => {
+  Inventory.find({labels}).exec((err, results) => {
+    if (err) cb(err)
+
+    cb(null, results)
+  })
+}
+
 const createEntry = ({name, labels, brandName, url, imageUrl, gender, price}, cb) => {
   new Inventory({
     name,
@@ -32,5 +40,6 @@ const createEntry = ({name, labels, brandName, url, imageUrl, gender, price}, cb
 }
 
 module.exports = {
+  getInventory,
   createEntry
 }
