@@ -26,6 +26,14 @@ body {
   justify-content: center;
 }
 
+#uploadButton {
+  background-color: #57bdcb;
+  position: absolute;
+  height: 4vh;
+  right: 1vh;
+  top: 2vh;
+}
+
 /* article,div,footer,header,main,nav,section{
   display:flex;
   align-items: stretch;

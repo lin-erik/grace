@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Sticky } from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
 import TextTransition from 'react-text-transition'
 
 class Navbar extends Component {
@@ -42,19 +42,26 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
-        <Sticky offset={1}>
-          <Header as='h1'>
-            <div style={{backgroundColor: 'white', padding: '1%', textAlign: 'center', opacity: '0.75'}}>
-              <TextTransition
-                delay={0}
-                order={this.state.animateDir}
-                spring={{ stiffness: 350, damping: 25 }}
-                text={this.state.text}
-              />
-            </div>
-          </Header>
-        </Sticky>
+      <div style={{ position: 'fixed', width: '100%', top: '0px', zIndex: 1 }}>
+        <Header as="h1">
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '1%',
+              opacity: '0.75'
+            }}
+          >
+            <TextTransition
+              delay={0}
+              order={this.state.animateDir}
+              spring={{ stiffness: 350, damping: 25 }}
+              text={this.state.text}
+            />
+          </div>
+          <Button id="uploadButton" primary style={{ paddingTop: '0.5em' }}>
+            Upload a Photo
+          </Button>
+        </Header>
       </div>
     )
   }
