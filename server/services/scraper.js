@@ -16,8 +16,8 @@ var scrape = async(site,clarifai,req,res)=>{
   var keywords = ['t-shirt','dress-shirt','hoodie','jeans','shorts','cardigan','suit-jacket','dress','skirt','coat']
   // clothings.forEach(clothing=>colors.forEach(color=> keywords.push(`${color} ${clothing}`)))
   var results = []
-  const browser = await puppeteer.launch();
-  // const browser = await puppeteer.launch({headless:false});
+  // const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless:false});
   const page = await browser.newPage();
 
   //bypass antiautomation test
@@ -71,7 +71,7 @@ var scrape = async(site,clarifai,req,res)=>{
           })
         })
         await page.waitFor(1000)
-        if (await page.$('.shq_exit') !== null) await page.click('.shq_exit')
+        // if (await page.$('.shq_exit') !== null) await page.click('.shq_exit')
         // if (await page.$('.nextArrow') !== null) await page.click('.nextArrow')
 
         const bodyHandle = await page.$('body')
@@ -81,7 +81,7 @@ var scrape = async(site,clarifai,req,res)=>{
           var data = $(el)
           var imageUrl = data.find(imgTag).first().attr('src')
           if(imageUrl){
-            // imageUrl = imageUrl.substring(0,imageUrl.indexOf('?')) //comment out if its zara
+            imageUrl = imageUrl.substring(0,imageUrl.indexOf('?')) //comment out if its zara
             if(imageUrl[0] === '/') imageUrl = imgUrlModifier + imageUrl
           }
           var name = data.find(nameTag).text().trim().replace(/\s\s+/g, ' ')
