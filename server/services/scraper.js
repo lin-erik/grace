@@ -81,7 +81,7 @@ var scrape = async(site,clarifai,req,res)=>{
           var data = $(el)
           var imageUrl = data.find(imgTag).first().attr('src')
           if(imageUrl){
-            imageUrl = imageUrl.substring(0,imageUrl.indexOf('?'))
+            // imageUrl = imageUrl.substring(0,imageUrl.indexOf('?')) //comment out if its zara
             if(imageUrl[0] === '/') imageUrl = imgUrlModifier + imageUrl
           }
           var name = data.find(nameTag).text().trim().replace(/\s\s+/g, ' ')
