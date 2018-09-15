@@ -10,7 +10,6 @@ export default class UploadComponent extends Component {
     }
     this.sendImageUrl = this.sendImageUrl.bind(this)
     this.sendImageFile = this.sendImageFile.bind(this)
-    // this.uploadToTF = this.uploadToTF.bind(this);
   }
   handleImageUrl(imageUrl) {
     this.setState({ imageUrl })
@@ -43,7 +42,6 @@ export default class UploadComponent extends Component {
     let imageFile = input.files[0]
     let data = new FormData()
     data.append('image', imageFile)
-    // data.set('username', this.props.username)
 
     axios
       .post('/api/analyze', data)

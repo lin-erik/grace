@@ -12,22 +12,6 @@ AOS.init({
   duration: 800
 })
 
-const renderMergedProps = (component, ...rest) => {
-  const finalProps = Object.assign({}, ...rest)
-  return React.createElement(component, finalProps)
-}
-
-const PropsRoute = ({ component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={routeProps => {
-        return renderMergedProps(component, routeProps, rest)
-      }}
-    />
-  )
-}
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -50,8 +34,8 @@ class App extends Component {
         val.name = val.name.slice(0, comma)
         val.name = val.name.slice(0, dollar)
       }
-      
-      val.price = String(val.price).slice(0 ,String(val.price).indexOf('.'))
+
+      val.price = String(val.price).slice(0, String(val.price).indexOf('.'))
     })
 
     this.setState({

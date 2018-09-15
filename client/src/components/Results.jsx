@@ -14,15 +14,43 @@ class Results extends Component {
       <div>
         <Navbar setImageRecs={this.props.setImageRecs} />
 
-        <Grid columns={2} style={{marginTop: '10%'}}>
-          <Grid.Column width={6}>
-            <div style={{marginLeft: '15%', width: '15%', height: '50px', border: '1px solid black'}}>
-              Test
+        <Grid columns={2}>
+          <Grid.Row>
+            <div
+              style={{
+                marginTop: '5%',
+                marginLeft: '5%',
+                width: '90%',
+                border: '1px solid black'
+              }}
+            >
+              <div className="google-maps-container">
+                <div className="mapouter">
+                  <div className="gmap_canvas">
+                    <iframe
+                      width="100%"
+                      height="300"
+                      id="gmap_canvas"
+                      src={`https://maps.google.com/maps?q=Fashion%Stores&output=embed`}
+                      frameBorder="0"
+                      scrolling="yes"
+                      marginHeight="0"
+                      marginWidth="0"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </Grid.Column>
+          </Grid.Row>
 
-          <Grid.Column>
-            <Grid columns={3}>
+          <Grid.Row>
+            <div
+              style={{
+                marginLeft: '5%',
+                width: '90%'
+              }}
+            >
+              <Grid columns={5}>
                 {this.props.imageRecs.map((rec, ind) => (
                   <Grid.Column key={ind}>
                     <Card>
@@ -34,15 +62,14 @@ class Results extends Component {
                         </Card.Meta>
                       </Card.Content>
                       <Card.Content extra>
-                        <a href={rec.url}>
-                          ${rec.price}
-                        </a>
+                        <a href={rec.url}>${rec.price}</a>
                       </Card.Content>
                     </Card>
                   </Grid.Column>
                 ))}
-            </Grid>
-          </Grid.Column>
+              </Grid>
+            </div>
+          </Grid.Row>
         </Grid>
       </div>
     )

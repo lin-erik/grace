@@ -21,10 +21,10 @@ module.exports = {
         }
       },
       {
-        test:/\.css$/,
+        test: /\.css$/,
         include: SRC_DIR,
-        loader: ['style-loader','css-loader']
-      },
+        loader: ['style-loader', 'css-loader']
+      }
     ]
   },
   devServer: {
