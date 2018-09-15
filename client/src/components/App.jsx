@@ -87,9 +87,17 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => (
-                <Splash {...props} setImageRecs={this.setImageRecs} />
-              )}
+              render={props => {
+                if (this.state.imageRecs.length > 0) {
+                  return (
+                    <Redirect
+                      to={{ pathname: '/results', state: { from: '/' } }}
+                    />
+                  )
+                } else {
+                  return <Splash {...props} setImageRecs={this.setImageRecs} />
+                }
+              }}
             />
           </Switch>
         </div>
