@@ -15,7 +15,7 @@ let inventorySchema = new Schema({
 const Inventory = mongoose.model('Inventory', inventorySchema)
 
 const getInventory = (labels, cb) => {
-  Inventory.find({labels}).exec((err, results) => {
+  Inventory.find({labels}).limit(20).exec((err, results) => {
     if (err) cb(err)
 
     cb(null, results)
