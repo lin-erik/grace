@@ -4,6 +4,7 @@ import { Redirect, Switch } from 'react-router'
 import AOS from 'aos'
 import Splash from './Splash.jsx'
 import Navbar from './Navbar.jsx'
+import UploadComponent from './UploadComponent.jsx'
 
 import '../styles/css/main.css'
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/" component={Splash} />
           </Switch>
         </div>
+        <UploadComponent/>
       </Router>
     )
   }
