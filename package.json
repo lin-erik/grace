@@ -4,7 +4,9 @@
   "description": "SBU Hackathon",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js",
+    "server-dev": "nodemon server/index.js",
+    "client": "npm run start --prefix client"
   },
   "repository": {
     "type": "git",
