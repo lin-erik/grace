@@ -41,6 +41,14 @@ class App extends Component {
 
   setImageRecs(recs) {
     console.log(recs)
+
+    recs.forEach(val => {
+      val.name = val.name.slice(0, val.name.indexOf(','))
+      val.name = val.name.slice(0, val.name.indexOf('$'))
+
+      val.price = String(val.price).slice(0 ,String(val.price).indexOf('.'))
+    })
+
     this.setState({
       imageRecs: recs
     })
