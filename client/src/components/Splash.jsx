@@ -39,7 +39,7 @@ class Splash extends Component {
                       </Button>
                     }
                   >
-                    <Modal.Content>
+                    <Modal.Content style={{ backgroundColor: '#696969' }}>
                       <UploadComponent setImageRecs={this.props.setImageRecs} />
                     </Modal.Content>
                   </Modal>
@@ -50,7 +50,7 @@ class Splash extends Component {
         </Parallax>
         <Parallax
           bgImage={
-            'https://static.dezeen.com/uploads/2017/08/kino-mit-media-lab_dezeen_2364_sq.jpg'
+            'https://d1msb7dh8kb0o9.cloudfront.net/spree/products/47277/original/fp2907-lg57-4.jpg?1534369414'
           }
           strength={700}
         >
@@ -74,7 +74,7 @@ class Splash extends Component {
         </Parallax>
         <Parallax
           bgImage={
-            'https://www.meandem.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/f/r/frill2_1_5.jpg'
+            'https://www.meandem.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/white_shirt-min.jpg'
           }
           strength={700}
         >
@@ -92,7 +92,7 @@ class Splash extends Component {
                       </Button>
                     }
                   >
-                    <Modal.Content>
+                    <Modal.Content style={{ backgroundColor: '#696969' }}>
                       <UploadComponent setImageRecs={this.props.setImageRecs} />
                     </Modal.Content>
                   </Modal>
