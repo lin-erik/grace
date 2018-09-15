@@ -15,7 +15,7 @@ let inventorySchema = new Schema({
 const Inventory = mongoose.model('Inventory', inventorySchema)
 
 const getInventory = (labels, cb) => {
-  Inventory.find({labels}).exec((err, results) => {
+  Inventory.find({labels}).limit(20).exec((err, results) => {
     if (err) cb(err)
 
     cb(null, results)
@@ -40,20 +40,26 @@ const createEntry = ({name, labels, brandName, url, imageUrl, gender, price}, cb
   })
 }
 
-const labelAll = (clarifai,cb)=>{
+const labelAll = (clarifai, cb)=>{
   Inventory.find().exec((err,results)=>{
-    let promises = results.map(result=>{
-      return new Promise((resolve,reject)=>{
-        console.log(result.imageUrl)
-        clarifai.models.predict(CLARIFAI_MODEL_ID, result.imageUrl).then(
-          function(response) {
-            console.log(response);
-          },
-          function(err) {
-            console.error(err);
-          }
-        )
-      })
+    let promises = results.map((result, ind)=>{
+      setTimeout(() => {
+        return new Promise((resolve,reject)=>{
+          clarifai.models.predict(CLARIFAI_MODEL_ID, result.imageUrl).then(
+            function(response) {
+              let labels = response.outputs[0].data.concepts.map(concept => concept.name)[0]
+              console.log({ labels })
+              Inventory.findByIdAndUpdate(result._id, {
+                $set: { labels }
+              }).then(() => resolve())
+            },
+            function(err) {
+              // console.error(err.data)
+              resolve()
+            }
+          )
+        })
+      }, 1000 * ind);
     })
     Promise.all(promises).then(()=>cb())
   })
@@ -62,7 +68,8 @@ const labelAll = (clarifai,cb)=>{
 module.exports = {
   getInventory,
   createEntry,
-  labelAll
+  labelAll,
+  Inventory
 }
 
 // (response,err)=>{
