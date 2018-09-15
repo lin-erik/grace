@@ -43,9 +43,14 @@ class App extends Component {
     console.log(recs)
 
     recs.forEach(val => {
-      val.name = val.name.slice(0, val.name.indexOf(','))
-      val.name = val.name.slice(0, val.name.indexOf('$'))
+      const comma = val.name.indexOf(',')
+      const dollar = val.name.indexOf('$')
 
+      if (comma > -1 || dollar > -1) {
+        val.name = val.name.slice(0, comma)
+        val.name = val.name.slice(0, dollar)
+      }
+      
       val.price = String(val.price).slice(0 ,String(val.price).indexOf('.'))
     })
 
