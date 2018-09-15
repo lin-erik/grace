@@ -4,7 +4,7 @@
   "description": "SBU Hackathon",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,10 @@
     "@babel/core": "^7.0.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "clarifai": "^2.8.1",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.2.14"
+    "mongoose": "^5.2.14",
+    "morgan": "^1.9.1"
   }
 }
