@@ -8,8 +8,12 @@ const sampleData = require('../trainingSample')
 const controller = require('./controllers/controller')
 const scraper = require('./services/scraper.js')
 const db = require('./database/mongoose')
+<<<<<<< HEAD
 const model = require('./models/inventory')
 const fileUpload = require('express-fileupload');
+=======
+const { Inventory } = require('./models/inventory')
+>>>>>>> dev
 
 const app = express()
 /****** express middleware ******/
@@ -29,11 +33,32 @@ const clarifai = new Clarifai.App({
 
 // app.get('/scrape', scraper.scrape.bind(this,'zara',clarifai))
 
-// app.get('/label',(req,res)=>{
-//   model.labelAll(clarifai,()=>{
-//     res.send("done")
-//   })
-// })
+app.get('/label',(req,res)=>{
+  Inventory.find({labels : {$size: 0} }).exec((err, results) => {
+    let promises = results.map((result, ind) => {
+      setTimeout(() => {
+        return new Promise((resolve, reject) => {
+          console.log(result.imageUrl)
+
+          clarifai.models.predict(CLARIFAI_MODEL_ID, result.imageUrl).then(
+            function (response) {
+              let labels = response.outputs[0].data.concepts.map(concept => concept.name)[0]
+              console.log({ labels })
+              Inventory.findByIdAndUpdate(result._id, {
+                $set: { labels }
+              }).then(() => resolve())
+            },
+            function (err) {
+              console.error(err)
+              resolve()
+            }
+          )
+        })
+      }, 250 * ind);
+    })
+    Promise.all(promises).then(() => res.send('Done'))
+  })
+})
 
 app.post('/api/analyze',(req,res)=>{
   let image

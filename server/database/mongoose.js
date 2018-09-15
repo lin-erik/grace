@@ -10,4 +10,4 @@ inventoryDB.on('error', err => {
 })
 inventoryDB.once('open', function() {
   console.log("db connected")
-});
+})
