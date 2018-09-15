@@ -1,0 +1,44 @@
+body {
+  background-color: #fafafa;
+}
+
+.splashImage {
+  background-image: url('http://images.ctfassets.net/cvlcgjxo5px5/3twRR067LywU8UWQse4Y2E/37f4c7dda59b7094723773ce33136048/HP1_2x.jpg');
+}
+
+.imageBox {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.imageBox .imageText {
+  width: 100%;
+  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#uploadButton {
+  background-color: #57bdcb;
+  position: absolute;
+  height: 4vh;
+  right: 1vh;
+  top: 2vh;
+}
+
+/* article,div,footer,header,main,nav,section{
+  display:flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+} */
