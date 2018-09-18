@@ -4,8 +4,9 @@
   "description": "Client side",
   "main": "index.jsx",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "client-dev": "webpack -d --watch"
+    "start": "webpack --mode=production",
+    "client-dev": "webpack -d --watch",
+    "build": "webpack-dev-server --mode development --open"
   },
   "author": "",
   "license": "MIT",

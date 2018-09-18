@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router onUpdate={() => window.scrollTo(0, 0)}>
         <div>
           <Navbar
             imageRecs={this.state.imageRecs}
@@ -64,12 +64,15 @@ class App extends Component {
                     />
                   )
                 } else {
-                  return <Redirect to={{ pathname: '/' }} />
+                  return (
+                    <Redirect
+                      to={{ pathname: '/', state: { from: '/results' } }}
+                    />
+                  )
                 }
               }}
             />
             <Route
-              exact
               path="/"
               render={props => {
                 if (this.state.imageRecs.length > 0) {
