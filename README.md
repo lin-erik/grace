@@ -2,7 +2,8 @@
 
 Grace is a smart fashion assistant, providing recommendations based on user-submitted images - leveraging object detection to classify/detect clothing.
 
-<img src="https://lh5.googleusercontent.com/6KDJkGNj7nW5JJCQR-yYUo1zsc2CfShseXFYnnO3jS6buIUwhTtzU7SAdjDE8olsPRJAzVZJfbbXp_FG313q=w1440-h724-rw"></img>
+<img src="https://lh5.googleusercontent.com/Wfd-m8q9bHRpU4ybAJ5o70-MZd6G_HGqUCILwQYQpJBqurOcHppqtJdRvYVO2alKx70R9VjgcGK1hUEDLN8h=w1440-h724-rw"></img>
+
 
 ## Team
 - Dan Guan
