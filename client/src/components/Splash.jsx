@@ -15,7 +15,7 @@ class Splash extends Component {
       <div className="splash">
         <Parallax
           bgImage={
-            'http://images.ctfassets.net/cvlcgjxo5px5/3twRR067LywU8UWQse4Y2E/37f4c7dda59b7094723773ce33136048/HP1_2x.jpg'
+            'https://images.ctfassets.net/cvlcgjxo5px5/3twRR067LywU8UWQse4Y2E/37f4c7dda59b7094723773ce33136048/HP1_2x.jpg'
           }
           strength={700}
         >
